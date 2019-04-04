@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10BEAEF35B75D7A251BA2544 /* Pods_FlightStatus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48359E599765B38849085F65 /* Pods_FlightStatus.framework */; };
 		F3CA1E472254E5A3004DD740 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CA1E462254E5A3004DD740 /* AppDelegate.swift */; };
 		F3CA1E492254E5A3004DD740 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CA1E482254E5A3004DD740 /* ViewController.swift */; };
 		F3CA1E4C2254E5A3004DD740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CA1E4A2254E5A3004DD740 /* Main.storyboard */; };
 		F3CA1E4E2254E5A4004DD740 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3CA1E4D2254E5A4004DD740 /* Assets.xcassets */; };
 		F3CA1E512254E5A4004DD740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3CA1E4F2254E5A4004DD740 /* LaunchScreen.storyboard */; };
+		F3CA1E5B2254EAE6004DD740 /* AddFlightsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CA1E5A2254EAE6004DD740 /* AddFlightsController.swift */; };
+		F3CA1E5D2254EC78004DD740 /* FlightStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CA1E5C2254EC78004DD740 /* FlightStatus.swift */; };
+		F3CA1E5F22555FC6004DD740 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CA1E5E22555FC6004DD740 /* Constants.swift */; };
+		F3CA1E612255B9BA004DD740 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CA1E602255B9BA004DD740 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F8B58E8F5EDE70618E065C5 /* Pods-FlightStatus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightStatus.release.xcconfig"; path = "Target Support Files/Pods-FlightStatus/Pods-FlightStatus.release.xcconfig"; sourceTree = "<group>"; };
+		48359E599765B38849085F65 /* Pods_FlightStatus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightStatus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D922C478664570354567C8BB /* Pods-FlightStatus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightStatus.debug.xcconfig"; path = "Target Support Files/Pods-FlightStatus/Pods-FlightStatus.debug.xcconfig"; sourceTree = "<group>"; };
 		F3CA1E432254E5A3004DD740 /* FlightStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightStatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3CA1E462254E5A3004DD740 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3CA1E482254E5A3004DD740 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +30,10 @@
 		F3CA1E4D2254E5A4004DD740 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3CA1E502254E5A4004DD740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3CA1E522254E5A4004DD740 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3CA1E5A2254EAE6004DD740 /* AddFlightsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlightsController.swift; sourceTree = "<group>"; };
+		F3CA1E5C2254EC78004DD740 /* FlightStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightStatus.swift; sourceTree = "<group>"; };
+		F3CA1E5E22555FC6004DD740 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F3CA1E602255B9BA004DD740 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +41,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10BEAEF35B75D7A251BA2544 /* Pods_FlightStatus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1498331F4B400AE0E7F90EF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				48359E599765B38849085F65 /* Pods_FlightStatus.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F3CA1E3A2254E5A3004DD740 = {
 			isa = PBXGroup;
 			children = (
 				F3CA1E452254E5A3004DD740 /* FlightStatus */,
 				F3CA1E442254E5A3004DD740 /* Products */,
+				F400017E9CF92A8C6AF19D13 /* Pods */,
+				1498331F4B400AE0E7F90EF4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +79,25 @@
 			children = (
 				F3CA1E462254E5A3004DD740 /* AppDelegate.swift */,
 				F3CA1E482254E5A3004DD740 /* ViewController.swift */,
+				F3CA1E5E22555FC6004DD740 /* Constants.swift */,
+				F3CA1E5C2254EC78004DD740 /* FlightStatus.swift */,
+				F3CA1E602255B9BA004DD740 /* TableViewCell.swift */,
+				F3CA1E5A2254EAE6004DD740 /* AddFlightsController.swift */,
 				F3CA1E4A2254E5A3004DD740 /* Main.storyboard */,
 				F3CA1E4D2254E5A4004DD740 /* Assets.xcassets */,
 				F3CA1E4F2254E5A4004DD740 /* LaunchScreen.storyboard */,
 				F3CA1E522254E5A4004DD740 /* Info.plist */,
 			);
 			path = FlightStatus;
+			sourceTree = "<group>";
+		};
+		F400017E9CF92A8C6AF19D13 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D922C478664570354567C8BB /* Pods-FlightStatus.debug.xcconfig */,
+				0F8B58E8F5EDE70618E065C5 /* Pods-FlightStatus.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +107,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3CA1E552254E5A4004DD740 /* Build configuration list for PBXNativeTarget "FlightStatus" */;
 			buildPhases = (
+				AE1F5B0D8F2957F2A866D3E6 /* [CP] Check Pods Manifest.lock */,
 				F3CA1E3F2254E5A3004DD740 /* Sources */,
 				F3CA1E402254E5A3004DD740 /* Frameworks */,
 				F3CA1E412254E5A3004DD740 /* Resources */,
+				97F5773027A831D12D9ABB73 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,13 +168,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		97F5773027A831D12D9ABB73 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlightStatus/Pods-FlightStatus-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlightStatus/Pods-FlightStatus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE1F5B0D8F2957F2A866D3E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlightStatus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F3CA1E3F2254E5A3004DD740 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3CA1E5F22555FC6004DD740 /* Constants.swift in Sources */,
 				F3CA1E492254E5A3004DD740 /* ViewController.swift in Sources */,
+				F3CA1E5D2254EC78004DD740 /* FlightStatus.swift in Sources */,
+				F3CA1E612255B9BA004DD740 /* TableViewCell.swift in Sources */,
 				F3CA1E472254E5A3004DD740 /* AppDelegate.swift in Sources */,
+				F3CA1E5B2254EAE6004DD740 /* AddFlightsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +371,7 @@
 		};
 		F3CA1E562254E5A4004DD740 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D922C478664570354567C8BB /* Pods-FlightStatus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -297,6 +389,7 @@
 		};
 		F3CA1E572254E5A4004DD740 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F8B58E8F5EDE70618E065C5 /* Pods-FlightStatus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
