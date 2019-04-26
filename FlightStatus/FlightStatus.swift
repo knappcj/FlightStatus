@@ -10,34 +10,19 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class FlightStatus {
     
-            var arrivalAirport = ""
-            var departureTime = 0
-            var departureGate = ""
-            var onTimeStatus = ""
-        
-        var flightStatusArray: [FlightStatus] = []
-    
-    func getFlight(completed: @escaping ()-> () ){
-        Alamofire.request(apiURL).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                self.arrivalAirport = json[].string ?? ""
-                self.departureTime = json[].int ?? 0
-                self.departureGate = json[].string ?? ""
-                self.onTimeStatus = json[].string ?? ""
-                
-            case .failure(let error):
-                print("ERROR: \(error.localizedDescription) failed to get data from url")
-            }
-            completed()
-        }
-
+    struct FlightStatus {
+        var currentArrivalAirport: String
+        var currentDepartureGate: String
+        var currentDepartureTime: String
+        var currentOnTimeStatus: String
+        var currentDepartureAirport: String
+        var currentAirlineCode: String
+        var currentFlightDigits: String
+        var flightID: Int
     }
     
-}
+
 
 
 
