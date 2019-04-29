@@ -126,20 +126,28 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="LEM-sR-Pyw">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" id="P2r-nM-SjR">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="IcG-vb-IRj">
                             <connections>
-                                <action selector="editBarButtonPressed:" destination="BYZ-38-t0r" id="5Jb-Zx-AEb"/>
+                                <action selector="refreshedPressed:" destination="BYZ-38-t0r" id="g9c-Ef-4LD"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add Flights" id="1jR-NA-wZN">
-                            <connections>
-                                <segue destination="4hs-Ik-NnH" kind="presentation" id="AtF-QJ-efc"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Add Flights" id="1jR-NA-wZN">
+                                <connections>
+                                    <segue destination="4hs-Ik-NnH" kind="presentation" id="AtF-QJ-efc"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Edit" id="P2r-nM-SjR">
+                                <connections>
+                                    <action selector="editBarButtonPressed:" destination="BYZ-38-t0r" id="5Jb-Zx-AEb"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addBarButton" destination="1jR-NA-wZN" id="1Yt-I9-Pvz"/>
                         <outlet property="editBarButton" destination="P2r-nM-SjR" id="tyb-10-yug"/>
+                        <outlet property="refreshButton" destination="IcG-vb-IRj" id="o40-x4-B1X"/>
                         <outlet property="tableView" destination="5qa-H6-9Bx" id="wZv-pB-UtY"/>
                     </connections>
                 </viewController>

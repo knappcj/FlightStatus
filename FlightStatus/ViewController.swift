@@ -9,14 +9,12 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import Firebase
-import FirebaseUI
-import GoogleSignIn
 
 class ViewController: UIViewController {
     
     
 
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     @IBOutlet weak var editBarButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -105,6 +103,22 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func refreshedPressed(_ sender: UIBarButtonItem) {
+        if flightStatusArray.isEmpty {
+            refreshButton.isEnabled = false
+        } else {
+        flightIDArray = []
+        createArrayOfIDs()
+        flightStatusArray = []
+        for ID in 0...flightIDArray.count - 1 {
+            refreshFlights(flightID: flightIDArray[ID]){
+                print(self.flightStatusArray)
+                self.tableView.reloadData()
+                print("^^^^^hey")
+            }
+            }
+        }
+    }
     
     @IBAction func unwindFromAddViewControllerSegue(segue: UIStoryboardSegue){
         let sourceViewController = segue.source as! AddFlightsController
