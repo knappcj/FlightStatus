@@ -12,6 +12,7 @@ class TableViewCell: UITableViewCell {
     let flights = AddFlightsController()
     
     
+    @IBOutlet weak var departureTimeLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var flightNumberLabel: UILabel!
     @IBOutlet weak var departureAirportLabel: UILabel!
@@ -20,7 +21,8 @@ class TableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    func update(with flightInformation: FlightStatus) {        
+    func update(with flightInformation: flightStatus) {
+        departureTimeLabel.text = formatTime(time: flightInformation.currentDepartureTime)
         flightNumberLabel.text = flightInformation.currentAirlineCode + flightInformation.currentFlightDigits
         departureAirportLabel.text = flightInformation.currentDepartureAirport
         arrivalAirportLabel.text = flightInformation.currentArrivalAirport
@@ -48,11 +50,32 @@ class TableViewCell: UITableViewCell {
             statusLabel.textColor = UIColor.red
         case "S":
             statusLabel.text = "Scheduled"
+            if flightInformation.delayTime > 15 {
+                statusLabel.textColor = UIColor.yellow
+                statusLabel.text = "Delayed"
+            }
         case "U":
             statusLabel.text = "Unknown"
             statusLabel.textColor = UIColor.black
         default:
             statusLabel.text = ""
+        }
+    }
+    func formatTime(time: String) -> String {
+        //2019-04-22T15:56:00.000
+        let removedDate = time.dropFirst(11)
+        let removedSecondsAndDate = removedDate.dropLast(7)
+        var hours = removedSecondsAndDate.dropLast(3)
+        var intHours = Int(hours)
+        let minutes = removedSecondsAndDate.dropFirst(3)
+        if intHours! > 11 {
+            intHours = intHours! - 12
+            if intHours == 0 {
+                return"\(12):\(minutes) PM"
+            }
+            return "\(intHours!):\(minutes) PM"
+        } else {
+            return "\(intHours!):\(minutes) AM"
         }
     }
 }

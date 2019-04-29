@@ -9,9 +9,9 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import Firebase
 
-    
-    struct FlightStatus {
+    struct flightStatus {
         var currentArrivalAirport: String
         var currentDepartureGate: String
         var currentDepartureTime: String
@@ -20,8 +20,8 @@ import SwiftyJSON
         var currentAirlineCode: String
         var currentFlightDigits: String
         var flightID: Int
-    }
-    
+        var delayTime: Int
+        }
 
 
 

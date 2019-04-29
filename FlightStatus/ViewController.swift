@@ -15,51 +15,49 @@ import GoogleSignIn
 
 class ViewController: UIViewController {
     
+    
+
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     @IBOutlet weak var editBarButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     var addFlight = AddFlightsController()
-    var flightStatusArray: [FlightStatus] = []
+    var flightStatusArray: [flightStatus] = []
     var flightIDArray: [Int] = []
-    var authUI: FUIAuth!
+    var stringOfIDs: [String] = []
+    var defaultsData = UserDefaults.standard
+    var currentTableViewHeight: Double = 0.0
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        signIn()
-    }
-    
-    func signIn() {
-        let providers: [FUIAuthProvider] = [
-            FUIGoogleAuth(),
-        ]
-        if authUI.auth?.currentUser == nil {
-            self.authUI.providers = providers
-            present(authUI.authViewController(), animated: true, completion: nil)
-        } else {
-            tableView.isHidden = false
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        authUI = FUIAuth.defaultAuthUI()
-        authUI?.delegate = self
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor(red: 22, green: 91, blue: 142, alpha: 1)
-        if flightStatusArray.isEmpty {
-            print("is empty")
+        stringOfIDs = defaultsData.stringArray(forKey: "stringOfIDs") ?? [String]()
+        if stringOfIDs.isEmpty {
+            print("string of ids is empty")
+            tableView.isHidden = true
         } else {
-            createArrayOfIDs()
-            for ID in flightIDArray {
-                refreshFlights(flightID: ID){
+            flightIDArray = []
+        for id in 0...stringOfIDs.count - 1 {
+            let intID = Int(stringOfIDs[id])!
+            flightIDArray.append(intID)
+            print("!!!!!!!Hey the flightIDArray was appended")
+        }
+            print("!\(flightIDArray)")
+        }
+        flightStatusArray = []
+        if flightIDArray.isEmpty{
+            print("hey its empty")
+        } else{
+            for ID in 0...flightIDArray.count - 1 {
+                refreshFlights(flightID: flightIDArray[ID]){
                     print(self.flightStatusArray)
-                    
+                    self.tableView.reloadData()
+                    print("^^^^^hey")
                 }
             }
-        }
+            }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,7 +65,10 @@ class ViewController: UIViewController {
             let destination = segue.destination as! FlightDetailViewController
             let index = tableView.indexPathForSelectedRow!.row
             destination.flightID = flightStatusArray[index].flightID
-            print("say whaaat")
+            if let selectedPath = tableView.indexPathForSelectedRow {
+                tableView.deselectRow(at: selectedPath, animated: false)
+            }
+            print("segued")
         }
     }
     func createArrayOfIDs(){
@@ -75,7 +76,6 @@ class ViewController: UIViewController {
             let id = flightStatusArray[index].flightID
             flightIDArray.append(id)
         }
-        flightStatusArray = []
     }
     
     func refreshFlights(flightID: Int, completed: @escaping ()->()) {
@@ -93,7 +93,8 @@ class ViewController: UIViewController {
                 let status = json["flightStatus"]["status"].stringValue
                 let airline = json["flightStatus"]["carrierFsCode"].stringValue
                 let flightNumber = json["flightStatus"]["flightNumber"].stringValue
-                let allThisData = FlightStatus(currentArrivalAirport: arrAirport, currentDepartureGate: depAirport, currentDepartureTime: scheduledDepTime, currentOnTimeStatus: status, currentDepartureAirport: depAirport, currentAirlineCode: airline, currentFlightDigits: flightNumber, flightID: flightID)
+                let delayTime = json["flightStatus"]["delays"]["departureGateDelayMinutes"].intValue ?? 0
+                let allThisData = flightStatus(currentArrivalAirport: arrAirport, currentDepartureGate: depGate, currentDepartureTime: scheduledDepTime, currentOnTimeStatus: status, currentDepartureAirport: depAirport, currentAirlineCode: airline, currentFlightDigits: flightNumber, flightID: flightID, delayTime: delayTime)
                 self.flightStatusArray.append(allThisData)
             case .failure(let error):
                 print("ERROR: \(error.localizedDescription) failed to get data from url")
@@ -103,7 +104,7 @@ class ViewController: UIViewController {
         }
     }
     
-
+    
     
     @IBAction func unwindFromAddViewControllerSegue(segue: UIStoryboardSegue){
         let sourceViewController = segue.source as! AddFlightsController
@@ -111,16 +112,8 @@ class ViewController: UIViewController {
         flightStatusArray.append(sourceViewController.newFlightToAdd!)
         tableView.reloadData()
         print(flightStatusArray)
-    }
-    @IBAction func signOutPressed(_ sender: Any) {
-        do{
-            try authUI!.signOut()
-            tableView.isHidden = true
-            signIn()
-        } catch {
-            print("error: it done got caught")
-        }
-        
+        saveDefaultsData()
+
     }
     
     @IBAction func editBarButtonPressed(_ sender: Any) {
@@ -128,6 +121,7 @@ class ViewController: UIViewController {
             tableView.setEditing(false, animated: true)
             editBarButton.title = "Edit"
             addBarButton.isEnabled = true
+            tableView.reloadData()
         } else {
             tableView.setEditing(true, animated: true)
             editBarButton.title = "Done"
@@ -136,11 +130,28 @@ class ViewController: UIViewController {
     }
     func evenOrOdd(number: Int)->Bool{
         if number % 2 == 0  {
-        return true
-    } else {
-    return false
+            return true
+        } else {
+            return false
+        }
     }
-}
+    func tableViewHieght(sections: Int) -> CGFloat{
+        currentTableViewHeight = 172 * Double(sections + 1)
+        return CGFloat(currentTableViewHeight)
+    }
+    
+    func saveDefaultsData() {
+        stringOfIDs = []
+        flightIDArray = []
+        createArrayOfIDs()
+        for id in 0...flightIDArray.count - 1 {
+            let stringID = String(flightIDArray[id])
+            stringOfIDs.append(stringID)
+        }
+        defaultsData.set(stringOfIDs,forKey: "stringOfIDs")
+        print("*******\(stringOfIDs)")
+    }
+    
 }
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -149,23 +160,40 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
+        if flightStatusArray.isEmpty {
+            print("*** flightStatusArray is empty")
+            tableView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        } else {
+            print(view.bounds.maxY)
+            if Double(view.bounds.maxY) < Double(currentTableViewHeight) {
+                tableView.frame = CGRect(x: 0, y: 28, width: view.frame.maxX, height: tableViewHieght(sections: indexPath.row) + 28)
+                tableView.isScrollEnabled = true
+                print("we got here")
+            } else {
+                print(Double(currentTableViewHeight))
+                tableView.frame = CGRect(x: 0, y: 88, width: view.frame.maxX, height: tableViewHieght(sections: indexPath.row))
+                tableView.isScrollEnabled = false
+                print("%^%^%^Still not there yet")
+            }
+        }
+        
+        let flightStatus = flightStatusArray[indexPath.row]
+        cell.update(with: flightStatus)
         if evenOrOdd(number: indexPath.row) == false {
             cell.backgroundColor = UIColor.init(red: 31, green: 126, blue: 199, alpha: 1)
         }
-        let flightStatus = flightStatusArray[indexPath.row]
-        cell.update(with: flightStatus)
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 131
+        return 172
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            var flightInfo = addFlight.flightsArray
-            flightInfo.remove(at: indexPath.row)
+        if editingStyle == .delete && flightStatusArray.count > 1 {
+            flightStatusArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            saveDefaultsData()
         }
     }
     //removing when nothing left an issue. 
@@ -174,35 +202,5 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let itemToMove = flightInfo[sourceIndexPath.row]
         flightInfo.remove(at: sourceIndexPath.row)
         flightInfo.insert(itemToMove, at: destinationIndexPath.row)
-    }
-}
-
-extension ViewController: FUIAuthDelegate {
-    func application(_ app: UIApplication, open url: URL,
-                     options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
-        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
-            return true
-        }
-        // other URL handling goes here.
-        return false
-    }
-    func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-    }
-    
-    func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
-        let loginViewController = FUIAuthPickerViewController(authUI: authUI)
-        loginViewController.view.backgroundColor = UIColor.white
-        
-        let marginInsets: CGFloat = 16
-        let imageHeight: CGFloat = 225
-        let imageY = self.view.center.y - imageHeight
-        let logoFrame = CGRect(x: self.view.frame.origin.x + marginInsets, y: imageY, width: self.view.frame.width - (marginInsets * 2), height: imageHeight)
-        //let logoImageView = UIImageView(frame: logoFrame)
-        //logoImageView.image = UIImage(named: "logo")
-        //logoImageView.contentMode = .scaleAspectFit
-        //loginViewController.view.addSubview(logoImageView)
-        
-        return loginViewController
     }
 }

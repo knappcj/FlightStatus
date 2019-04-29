@@ -61,13 +61,15 @@ class FlightDetailViewController: UIViewController {
             self.updateUserInterface()
             print(self.detailedFlightInformation)
             let button = RideRequestButton()
+            let buttonHeight = button.bounds.height
+            let buttonWidth = button.bounds.width
             let dropoffLocation = CLLocation(latitude: self.detailedFlightInformation.uberDestinationLatitude, longitude: self.detailedFlightInformation.uberDestinationLongitude)
             let builder = RideParametersBuilder()
             builder.dropoffLocation = dropoffLocation
             builder.dropoffNickname = "\(self.detailedFlightInformation.departureAirport)"
             button.rideParameters = builder.build()
-            button.center = self.view.center
-            //self.view.addSubview(button)
+            button.frame = CGRect(x: self.view.center.x - (buttonWidth * 0.5) , y: self.view.frame.maxY - buttonHeight - 10, width: buttonWidth, height: buttonHeight)
+            self.view.addSubview(button)
         }
     }
     
@@ -163,7 +165,7 @@ class FlightDetailViewController: UIViewController {
             status.text = ""
         }
         duration.text = formatDuration(time: detailedFlightInformation.flightDuration)
-        flightNumberLabel.text = detailedFlightInformation.flightNumber
+        flightNumberLabel.text = detailedFlightInformation.airline + detailedFlightInformation.flightNumber
     }
     
     func formatDuration(time: Int) -> String {
@@ -182,11 +184,15 @@ class FlightDetailViewController: UIViewController {
         var hours = removedSecondsAndDate.dropLast(3)
         var intHours = Int(hours)
         let minutes = removedSecondsAndDate.dropFirst(3)
-        if intHours! > 12 {
+        if intHours! > 11 {
             intHours = intHours! - 12
+            if intHours == 0 {
+                return"\(12):\(minutes) PM"
+            } else {
             return "\(intHours!):\(minutes) PM"
+            }
         } else {
-            return "\(intHours!):\(minutes)"
+            return "\(intHours!):\(minutes) AM"
         }
     }
 
