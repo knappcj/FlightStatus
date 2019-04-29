@@ -179,8 +179,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         } else {
             print(view.bounds.maxY)
-            if Double(view.bounds.maxY) < Double(currentTableViewHeight) {
-                tableView.frame = CGRect(x: 0, y: 28, width: view.frame.maxX, height: tableViewHieght(sections: indexPath.row) + 28)
+            if Double(view.bounds.maxY) < Double(tableViewHieght(sections: indexPath.row) + 124) {
+                tableView.frame = CGRect(x: 0, y: 0, width: view.frame.maxX, height: tableViewHieght(sections: indexPath.row))
                 tableView.isScrollEnabled = true
                 print("we got here")
             } else {
