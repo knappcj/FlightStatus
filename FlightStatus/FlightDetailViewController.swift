@@ -74,7 +74,7 @@ class FlightDetailViewController: UIViewController {
     }
     
     func getFlightDetail(flightID: Int, completed: @escaping ()-> ()){
-        let apiURL = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/\(flightID)?appId=0bb794b4&appKey=6ca76d46d5d391b1f5ec6f09b163523b"
+        let apiURL = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/\(flightID)?appId=7feacf78&appKey=efe1aa03255092dac1efc93932181732"
         
         Alamofire.request(apiURL).responseJSON { response in
             switch response.result {

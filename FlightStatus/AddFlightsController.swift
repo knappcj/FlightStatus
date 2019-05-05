@@ -68,7 +68,7 @@ class AddFlightsController: UIViewController {
     }
     
     func getFlight(airline: String, flightNumber: String, departureAirport: String, month: Int, day: Int, year: Int, completed: @escaping ()-> ()){
-        let apiURL = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/\(airline)/\(flightNumber)/dep/\(year)/\(month)/\(day)?appId=0bb794b4&appKey=6ca76d46d5d391b1f5ec6f09b163523b&utc=false&airport=\(departureAirport)&codeType=IATA"
+        let apiURL = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/\(airline)/\(flightNumber)/dep/\(year)/\(month)/\(day)?appId=7feacf78&appKey=efe1aa03255092dac1efc93932181732&utc=false&airport=\(departureAirport)&codeType=IATA"
         
         Alamofire.request(apiURL).responseJSON { response in
             switch response.result {
