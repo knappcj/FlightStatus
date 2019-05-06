@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import Firebase
-import GoogleSignIn
+
 
 @UIApplicationMain
 //fix class
@@ -17,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     //look here
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-            FirebaseApp.configure()
             return true
     }
 

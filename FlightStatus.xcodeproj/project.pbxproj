@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		10BEAEF35B75D7A251BA2544 /* Pods_FlightStatus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48359E599765B38849085F65 /* Pods_FlightStatus.framework */; };
-		F38AC3032270D26300EB596A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F38AC3022270D26300EB596A /* GoogleService-Info.plist */; };
 		F3A151D8226CC9B40015449F /* FlightDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A151D7226CC9B40015449F /* FlightDetailViewController.swift */; };
 		F3CA1E472254E5A3004DD740 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CA1E462254E5A3004DD740 /* AppDelegate.swift */; };
 		F3CA1E492254E5A3004DD740 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CA1E482254E5A3004DD740 /* ViewController.swift */; };
@@ -24,7 +23,6 @@
 		0F8B58E8F5EDE70618E065C5 /* Pods-FlightStatus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightStatus.release.xcconfig"; path = "Target Support Files/Pods-FlightStatus/Pods-FlightStatus.release.xcconfig"; sourceTree = "<group>"; };
 		48359E599765B38849085F65 /* Pods_FlightStatus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightStatus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D922C478664570354567C8BB /* Pods-FlightStatus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightStatus.debug.xcconfig"; path = "Target Support Files/Pods-FlightStatus/Pods-FlightStatus.debug.xcconfig"; sourceTree = "<group>"; };
-		F38AC3022270D26300EB596A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3A151D7226CC9B40015449F /* FlightDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDetailViewController.swift; sourceTree = "<group>"; };
 		F3CA1E432254E5A3004DD740 /* FlightStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightStatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3CA1E462254E5A3004DD740 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 				F3CA1E4D2254E5A4004DD740 /* Assets.xcassets */,
 				F3CA1E4F2254E5A4004DD740 /* LaunchScreen.storyboard */,
 				F3CA1E522254E5A4004DD740 /* Info.plist */,
-				F38AC3022270D26300EB596A /* GoogleService-Info.plist */,
 			);
 			path = FlightStatus;
 			sourceTree = "<group>";
@@ -165,7 +162,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3CA1E512254E5A4004DD740 /* LaunchScreen.storyboard in Resources */,
-				F38AC3032270D26300EB596A /* GoogleService-Info.plist in Resources */,
 				F3CA1E4E2254E5A4004DD740 /* Assets.xcassets in Resources */,
 				F3CA1E4C2254E5A3004DD740 /* Main.storyboard in Resources */,
 			);
